@@ -1,13 +1,5 @@
 /*! ------------------------------------------------
- * Project Name: Name: Braxton - Personal Portfolio & Resume HTML Template
- * Project Description: Show yourself brightly with Braxton - unique and creative portfolio and resume template!
- * Tags: mix_design, resume, portfolio, personal page, cv, template, one page, responsive, html5, css3, creative, clean 
- * Version: 1.0.0
- * Build Date: March 2024
- * Last Update: March 2024
- * This product is available exclusively on Themeforest
- * Author: mix_design
- * Author URI: https://themeforest.net/user/mix_design */
+
 /*! File name: main.css
  * ------------------------------------------------
  *
@@ -567,6 +559,48 @@ img {
     height: 425px;
   }
 }
+
+/* Toaster container */
+#toast-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Toaster message style */
+.toast {
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  transform: translateY(-20px);
+  font-size: 14px;
+  min-width: 250px;
+}
+
+/* Toaster message visible */
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Success message style */
+.toast.success {
+  background-color: #4caf50;
+}
+
+/* Error message style */
+.toast.error {
+  background-color: #f44336;
+}
+
 
 /* ------------------------------------------------*/
 /* Animations - Backgrounds End */
