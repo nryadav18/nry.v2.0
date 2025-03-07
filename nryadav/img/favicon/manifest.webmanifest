@@ -2,8 +2,8 @@
   "name": "N R Yadav's Portfolio",
   "short_name": "Portfolio/Resume",
   "icons": [
-    { "src": "/img/favicon/android-icon-192.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "/img/favicon/android-icon-512.png", "type": "image/png", "sizes": "512x512" }
+    { "src": "/img/avatars/PASSPORT_SIZE_PIC.jpeg", "type": "image/png", "sizes": "192x192" },
+    { "src": "/img/avatars/PASSPORT_SIZE_PIC.jpeg", "type": "image/png", "sizes": "512x512" }
   ],
   "theme_color": "#efefef",
   "background_color": "#efefef",

@@ -38,7 +38,7 @@ const transporter = nodemailer.createTransport({
 
 // POST route to handle email form submission
 app.post('/send-email', (req, res) => {
-  const { Name, Company, E_mail, Phone, Message } = req.body;
+  const { Name, E_mail, Phone, Message } = req.body;
 
   const mailOptions = {
     from: E_mail,  // Sender's email
