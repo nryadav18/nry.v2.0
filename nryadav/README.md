@@ -21,11 +21,11 @@
 
 ## 🖥️ NRYadav Frontend – Portfolio UI
 
-### 🔷 Loader Page  
-<img src="./frontend_outputs/1.png" width="100%" alt="Loader Page"/>
-
 ### 🔷 Home Page
 <img src="./frontend_outputs/2.png" width="100%" alt="Home Page"/>
+
+### 🔷 Loader Page  
+<img src="./frontend_outputs/1.png" width="100%" alt="Loader Page"/>
 
 ### 🔷 Projects Section - 1
 <img src="./frontend_outputs/3.png" width="100%" alt="Project Section 1"/>
