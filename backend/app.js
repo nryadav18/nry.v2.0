@@ -5,15 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var nodemailer = require('nodemailer');
 var bodyParser = require('body-parser');
-var cors = require('cors'); // Optional: for handling cross-origin requests
+require('dotenv').config();
+var cors = require('cors');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
 // Middleware setup
-app.use(cors());  // Enable CORS (if needed)
+app.use(cors());
 app.use(bodyParser.json())
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,18 +20,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const PORT = 5000
+const PORT = process.env.LOCAL_PORT;
 
-app.listen(PORT, function (){
-  console.log(`Server is Running at ${PORT}`)
-})
-
-// Set up Nodemailer transporter
+// Our Nodemailer transporter
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // You can replace with any other email service
+  service: 'gmail',
   auth: {
-    user: 'nedurirajeswaryadav5@gmail.com',  // Replace with your email
-    pass: 'rgef icay kemu tvgn'    // Replace with your email password or use an App Password for Gmail with 2FA
+    user: process.env.USER_EMAIL,
+    pass: process.env.USER_PASS
   }
 });
 
@@ -41,8 +36,8 @@ app.post('/send-email', (req, res) => {
   const { Name, E_mail, Phone, Message } = req.body;
 
   const mailOptions = {
-    from: E_mail,  // Sender's email
-    to: 'nedurirajeswaryadav5@gmail.com', // Recipient's email
+    from: E_mail,
+    to: process.env.USER_EMAIL,
     subject: `A Sweet Message from ${Name}`,
     html: `
       <!DOCTYPE html>
@@ -119,7 +114,6 @@ app.post('/send-email', (req, res) => {
           <div class="email-body">
             <h2>Message from ${Name}</h2>
             <p><strong>Name:</strong> ${Name}</p>
-            <p><strong>Company:</strong> ${Company}</p>
             <p><strong>Email Address:</strong> ${E_mail}</p>
             <p><strong>Phone Number:</strong> ${Phone}</p>
             <h3>Message:</h3>
@@ -145,6 +139,58 @@ app.post('/send-email', (req, res) => {
   });
 });
 
+
+app.get('/', (req, res) => {
+  res.send(`
+      <html>
+        <head>
+          <title>NRY Backend</title>
+          <style>
+            body {
+              background: #f5f7fa;
+              font-family: 'Segoe UI', sans-serif;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              margin: 0;
+            }
+            .container {
+              text-align: center;
+              background: white;
+              padding: 40px;
+              border-radius: 16px;
+              box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            }
+            h1 {
+              color: #3b82f6;
+              font-size: 32px;
+            }
+            p {
+              color: #6b7280;
+              font-size: 18px;
+              margin-top: 10px;
+            }
+            .emoji {
+              font-size: 48px;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="emoji">😎</div>
+            <h1>NRY Backend Server</h1>
+            <p>✅ Backend Service is Running smoothly</p>
+          </div>
+        </body>
+      </html>
+    `);
+});
+
+app.listen(PORT, function () {
+  console.log(`Server is Running Smoothly at ${PORT}`)
+})
+
 // Catch all route for 404 - not found
 app.use((req, res, next) => {
   res.status(404).json({ message: 'Page not found. Please check the URL.' });
@@ -155,7 +201,7 @@ app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ message: err.message || 'Internal Server Error' });
 });
 
 module.exports = app;
