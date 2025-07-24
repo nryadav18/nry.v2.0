@@ -97,20 +97,20 @@
 
 ## 📦 Installation
 
-
+```bash
 git clone https://github.com/nryadav18/nry.v2.0.git
-
 cd backend
 npm install
+```
 
 ## ▶️ Running the Server
-
+```bash
 npm start
-
+```
 ### or for development:
-
+```bash
 nodemon app.js
-
+```
 ### You’ll see:
 
 ✅ Server is Running Smoothly
